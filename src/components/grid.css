@@ -1,0 +1,18 @@
+.tableGrid {
+        border: 1px black solid;
+    border-collapse: collapse;
+    table-layout: fixed;
+    width: 100%;
+}
+
+.tableHeadGrid{
+        border-bottom: 1px black solid;
+}
+
+.tableBodyGrid{
+     border-bottom: 1px black solid;
+}
+th, td {
+border-right: 1px solid black;
+text-align: left;
+}
