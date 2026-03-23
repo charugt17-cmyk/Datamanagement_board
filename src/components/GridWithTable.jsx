@@ -22,13 +22,13 @@ const handleChange = (e) => {
     setFilter((prev) => ({...prev, [name]: value.toLowerCase()}));
 }
 
+const years = responseData && [...new Set(responseData.map(item => item.year))];
 const filteredData = responseData && responseData.filter((item) => {
     const laureates = item && item.laureates && item.laureates.map(items => (`${items.firstname} ${items.surname}`)).join(', ');
     return (
         item.category.toLowerCase().includes(filter.category) && item.year.includes(filter.year) && laureates && laureates.includes(filter.laureates)
 )});
 
-console.log(filteredData, 'filteredData')
     return (
         <>
         <table className="tableGrid">
@@ -37,7 +37,13 @@ console.log(filteredData, 'filteredData')
                     <th>Category
                     <input type="text" name='category' onChange={(e) => handleChange(e)} /></th>
                     <th>Year
-                    <input type="text"  name='year' onChange={(e) => handleChange(e)} /></th>
+                        <select name="year" onChange={(e) => handleChange(e)}>
+                            <option value=''>All</option>
+                            {years && years.map((item, index) => (
+                                <option key={index} value={item}>{item}</option>
+                            ))}
+                        </select>
+                    </th>
                     <th>Laureates
                     <input type="text" name='laureates' onChange={(e) => handleChange(e)} /></th>
                 </tr>
